@@ -1,77 +1,79 @@
 <template>
   <div class="vuestic-icon-set row">
-    <div class="header col-12">
-      <div class="row">
-        <div class="header-text col-lg-4">
-          <h2>{{ set.name }}</h2>
-          <router-link :to="{ path: '/ui/icons' }">
-            {{ 'icons.back' | translate }}
-          </router-link>
-        </div>
+    <div class="col-md-12">
+      <div class="header">
+        <div class="row">
+          <div class="header-text col-lg-4">
+            <h2>{{ set.name }}</h2>
+            <router-link :to="{ path: '/ui/icons' }">
+              {{ 'icons.back' | translate }}
+            </router-link>
+          </div>
 
-        <div class="search col-lg-4">
-          <div class="form-group with-icon-left">
-            <div class="input-group">
-              <input
-                v-model="selector"
-                id="input-icon-left"
-                name="input-icon-left"
-                required
-              />
-              <i class="fa fa-search icon-left input-icon"></i>
-              <label class="control-label" for="input-icon-left">
-                {{ 'icons.search' | translate }}
-              </label>
-              <i class="bar"></i>
+          <div class="search col-lg-4">
+            <div class="form-group with-icon-left">
+              <div class="input-group">
+                <input
+                  v-model="selector"
+                  id="input-icon-left"
+                  name="input-icon-left"
+                  required
+                />
+                <i class="fa fa-search icon-left input-icon"></i>
+                <label class="control-label" for="input-icon-left">
+                  {{ 'icons.search' | translate }}
+                </label>
+                <i class="bar"></i>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="range col-lg-4">
-          <h4>A</h4>
-          <vuestic-slider
-            :options="slider"
-            v-model="iconSize"
-          >
-          </vuestic-slider>
-          <h2>A</h2>
+          <div class="range col-lg-4">
+            <h4>A</h4>
+            <vuestic-slider
+              :options="slider"
+              v-model="iconSize"
+            >
+            </vuestic-slider>
+            <h2>A</h2>
+          </div>
         </div>
       </div>
-    </div>
 
-    <vuestic-widget
-      v-for="(list, index) in validatedLists"
-      :key="index"
-      :headerText="list.name"
-      class="col-12"
-    >
+      <vuestic-widget
+        v-for="(list, index) in validatedLists"
+        :key="index"
+        :headerText="list.name"
+        class="col-12"
+      >
       <span v-if="list.icons.length === 0">
         {{ 'icons.none' | translate }}
       </span>
-      <div
-        v-for="i in Math.floor(list.icons.length / 8 + 1)"
-        :key="i"
-        class="row vuestic-icon-container"
-      >
         <div
-          v-for="j in 8"
-          :key="j"
-          v-if="list.icons[(i - 1) * 8 + j - 1]"
-          class="col-8-custom icon-grid-container"
+          v-for="i in Math.floor(list.icons.length / 8 + 1)"
+          :key="i"
+          class="row vuestic-icon-container"
         >
-          <div class="vuestic-icon">
+          <div
+            v-for="j in 8"
+            :key="j"
+            v-if="list.icons[(i - 1) * 8 + j - 1]"
+            class="col-8-custom icon-grid-container"
+          >
+            <div class="vuestic-icon">
             <span
               :class="iconClass(list.icons[(i - 1) * 8 + j - 1])"
               :style="`font-size: ${iconSize}px`"
               aria-hidden="true"
             />
-          </div>
-          <div class="icon-text">
-            {{ list.icons[(i - 1) * 8 + j - 1] }}
+            </div>
+            <div class="icon-text">
+              {{ list.icons[(i - 1) * 8 + j - 1] }}
+            </div>
           </div>
         </div>
-      </div>
-    </vuestic-widget>
+      </vuestic-widget>
+    </div>
   </div>
 </template>
 
