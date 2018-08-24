@@ -98,7 +98,8 @@ export default {
       slider: {
         formatter: v => `${v}px`,
         min: 20,
-        max: 40
+        max: 40,
+        width: '136px'
       }
     }
   },

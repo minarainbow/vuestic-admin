@@ -5,6 +5,7 @@
     @input="change"
     :bg-style="sliderOptions.bgStyle"
     :slider-style="sliderOptions.sliderStyle"
+    :width="sliderOptions.width"
     class="vuestic-slider"
     :reverse="reverse"
   >
@@ -43,6 +44,7 @@ export default {
       defaultOptions: {
         dotSize: 16,
         height: 2,
+        width: 'auto',
         realTime: true,
         sliderStyle: {
           'background-color': store.getters.palette.primary,
